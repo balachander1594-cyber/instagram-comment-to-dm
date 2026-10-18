@@ -107,8 +107,8 @@ describe("agency workspace helpers", () => {
     expect(normalizeInvitationEmail(" Team@Agency.COM ")).toBe(
       "team@agency.com"
     );
-    expect(buildInvitationUrl("token_123", "https://campaigncue.com/")).toBe(
-      "https://campaigncue.com/invite/token_123"
+    expect(buildInvitationUrl("token_123", "https://leaddoor.com/")).toBe(
+      "https://leaddoor.com/invite/token_123"
     );
   });
 });

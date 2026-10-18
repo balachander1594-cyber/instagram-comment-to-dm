@@ -1,8 +1,8 @@
-# CampaignCue
+# LeadDoor
 
 Open-source Instagram comment-to-DM campaign OS for businesses, creators, and agencies.
 
-CampaignCue turns comments like `LINK`, `PRICE`, or `GUIDE` into Meta-compliant private replies. The core engine is MIT licensed and self-hostable. The hosted SaaS layer is being built for agencies that want campaign templates, analytics, client reports, and managed reliability.
+LeadDoor turns comments like `LINK`, `PRICE`, or `GUIDE` into Meta-compliant private replies. The core engine is MIT licensed and self-hostable. The hosted SaaS layer is being built for agencies that want campaign templates, analytics, client reports, and managed reliability.
 
 [Templates](app/templates) | [Roadmap](ROADMAP.md) | [Deployment](DEPLOYMENT.md) | [Referral plan](docs/referral-program.md) | [Production readiness](docs/production-readiness.md) | [Contributing](CONTRIBUTING.md) | [Security](SECURITY.md) | [Open-core model](docs/open-core.md)
 
@@ -13,12 +13,12 @@ Instagram comment-to-DM is one of the clearest social-commerce loops:
 ```text
 Customer comments "LINK" on a post or reel
 Meta sends a webhook
-CampaignCue matches the keyword
+LeadDoor matches the keyword
 The worker sends a private reply using the comment ID
 The business gets a warm conversation
 ```
 
-Most tools in this market are broad chatbot platforms. CampaignCue is intentionally narrower: a focused campaign operating system for Instagram comment-triggered DMs.
+Most tools in this market are broad chatbot platforms. LeadDoor is intentionally narrower: a focused campaign operating system for Instagram comment-triggered DMs.
 
 ## Current Product
 

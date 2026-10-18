@@ -1,6 +1,6 @@
 # Referral Program Plan
 
-CampaignCue will launch referrals as a manual founding-agency loop before automating billing credits.
+LeadDoor will launch referrals as a manual founding-agency loop before automating billing credits.
 
 ## Founding Agency Offer
 
