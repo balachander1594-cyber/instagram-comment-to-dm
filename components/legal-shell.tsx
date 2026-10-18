@@ -21,7 +21,7 @@ export default function LegalShell({
             <span className="flex h-9 w-9 items-center justify-center border border-cyan-200/20 bg-cyan-300/10 text-sm font-black text-cyan-100">
               CC
             </span>
-            <span className="text-lg font-bold text-white">CampaignCue</span>
+            <span className="text-lg font-bold text-white">LeadDoor</span>
           </Link>
           <Link
             href="/login"

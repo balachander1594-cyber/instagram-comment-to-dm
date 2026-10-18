@@ -17,7 +17,7 @@ export interface SeoPageConfig {
   comparisonTitle: string;
   comparisons: Array<{
     label: string;
-    campaignCue: string;
+    leadDoor: string;
     other: string;
   }>;
   templateLinks: Array<{
@@ -107,7 +107,7 @@ export default function SeoPageShell({ config }: { config: SeoPageConfig }) {
           <div className="mt-8 overflow-hidden border border-white/10">
             <div className="grid grid-cols-[0.8fr_1fr_1fr] border-b border-white/10 bg-zinc-950 text-xs font-bold uppercase tracking-wide text-zinc-500">
               <div className="p-4">Need</div>
-              <div className="p-4 text-cyan-100">CampaignCue</div>
+              <div className="p-4 text-cyan-100">LeadDoor</div>
               <div className="p-4">Generic automation</div>
             </div>
             {config.comparisons.map((item) => (
@@ -119,7 +119,7 @@ export default function SeoPageShell({ config }: { config: SeoPageConfig }) {
                   {item.label}
                 </div>
                 <div className="p-4 text-sm leading-6 text-zinc-300">
-                  {item.campaignCue}
+                  {item.leadDoor}
                 </div>
                 <div className="p-4 text-sm leading-6 text-zinc-500">
                   {item.other}
@@ -181,7 +181,7 @@ export default function SeoPageShell({ config }: { config: SeoPageConfig }) {
             Turn the next high-intent comment into a private reply
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-zinc-300">
-            CampaignCue is built for Instagram professional accounts, official
+            LeadDoor is built for Instagram professional accounts, official
             Meta private replies, and campaign reporting teams can show clients.
           </p>
           <Link

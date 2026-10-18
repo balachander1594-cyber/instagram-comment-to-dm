@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "CampaignCue - Instagram Comment to DM Campaign OS",
+  title: "LeadDoor - Instagram Comment to DM Campaign OS",
   description:
     "A premium self-serve SaaS for turning Instagram keyword comments into Meta-compliant private replies, lead capture, and campaign growth.",
 };
@@ -152,7 +152,7 @@ const referralLoop = [
 
 const faqs = [
   {
-    question: "Does CampaignCue use the official Meta API?",
+    question: "Does LeadDoor use the official Meta API?",
     answer:
       "Yes. The product is built around Meta webhooks and Instagram private replies, not scraping, browser automation, or password sharing.",
   },
@@ -386,11 +386,11 @@ export default function Home() {
 
       <header className="sticky top-0 z-40 border-b border-white/10 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center gap-3" aria-label="CampaignCue home">
+          <Link href="/" className="flex items-center gap-3" aria-label="LeadDoor home">
             <span className="flex h-9 w-9 items-center justify-center border border-cyan-200/20 bg-cyan-300/10 text-sm font-black text-cyan-100">
               CC
             </span>
-            <span className="text-lg font-bold text-white">CampaignCue</span>
+            <span className="text-lg font-bold text-white">LeadDoor</span>
           </Link>
 
           <nav className="hidden items-center gap-7 md:flex">
@@ -435,9 +435,9 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
-            CampaignCue turns keyword comments on posts and reels into private
+            LeadDoor turns keyword comments on posts and reels into private
             replies, campaign logs, and measurable lead capture for businesses,
-            creators, and agencies.
+            creators, and agencies. Every comment opens a door.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -796,7 +796,7 @@ export default function Home() {
             <span className="flex h-8 w-8 items-center justify-center border border-cyan-200/20 bg-cyan-300/10 text-xs font-black text-cyan-100">
               CC
             </span>
-            <span>CampaignCue</span>
+            <span>LeadDoor</span>
           </div>
           <div className="flex flex-wrap gap-4">
             {navLinks.map((link) => (
