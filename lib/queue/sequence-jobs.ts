@@ -124,7 +124,7 @@ export async function tryHandleSequenceJob(job: Job): Promise<boolean> {
         data: {
           workspaceId: automation.workspaceId,
           source: "WORKER",
-          level: "WARN",
+          level: "WARNING",
           message: `Sequence step ${stepOrder} for DM ${dmLogId} kept pending: workspace DM plan limit reached`,
           payload: {
             dmLogId,
