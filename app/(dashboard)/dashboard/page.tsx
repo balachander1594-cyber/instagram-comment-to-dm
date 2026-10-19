@@ -11,6 +11,18 @@ import AccountSelect, { type AccountOption } from "@/components/account-select";
 import StatCard from "@/components/stat-card";
 import StatusBadge from "@/components/status-badge";
 
+interface AbVariantStats {
+  variant: "A" | "B" | "none";
+  sent: number;
+  clicks: number;
+  ctr: number;
+}
+
+interface AutomationOption {
+  id: string;
+  name: string;
+}
+
 interface DashboardStats {
   totalAutomations: number;
   activeAutomations: number;
@@ -42,6 +54,10 @@ export default function DashboardPage() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedAccountId, setSelectedAccountId] = useState("all");
+  const [automations, setAutomations] = useState<AutomationOption[]>([]);
+  const [abAutomationId, setAbAutomationId] = useState<string | null>(null);
+  const [abStats, setAbStats] = useState<AbVariantStats[] | null>(null);
+  const [abAutomationName, setAbAutomationName] = useState<string>("");
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -62,6 +78,42 @@ export default function DashboardPage() {
     setLoading(true);
     setSelectedAccountId(accountId);
   }
+
+  // A/B test results: automations list + per-variant stats for the selected one.
+  useEffect(() => {
+    fetch("/api/automations")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success) {
+          const options = (data.data ?? []).map(
+            (a: { id: string; name: string }) => ({ id: a.id, name: a.name })
+          );
+          setAutomations(options);
+          if (options.length > 0 && !abAutomationId) {
+            setAbAutomationId(options[0].id);
+          }
+        }
+      })
+      .catch(console.error);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!abAutomationId) return;
+    setAbStats(null);
+    fetch(`/api/analytics/ab?automationId=${abAutomationId}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success) {
+          setAbStats(data.data.variants ?? []);
+          setAbAutomationName(data.data.automationName ?? "");
+        }
+      })
+      .catch(console.error);
+  }, [abAutomationId]);
+
+  const abHasData =
+    abStats !== null && abStats.some((v) => v.sent > 0 || v.clicks > 0);
 
   if (loading) {
     return (
@@ -217,6 +269,79 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
+
+      {/* A/B Test Results — only shown when a selected automation has data */}
+      {abHasData && (
+        <div className="glass rounded-2xl p-6 animate-fade-in">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
+            <div>
+              <h2 className="text-sm font-semibold text-foreground">
+                A/B Test Results
+              </h2>
+              {abAutomationName && (
+                <p className="text-xs text-muted mt-0.5">{abAutomationName}</p>
+              )}
+            </div>
+            {automations.length > 1 && (
+              <select
+                value={abAutomationId ?? ""}
+                onChange={(e) => setAbAutomationId(e.target.value)}
+                className="rounded-lg border border-border bg-surface px-3 py-2 text-xs font-medium text-foreground focus:border-accent focus:outline-none"
+                aria-label="Select automation for A/B results"
+              >
+                {automations.map((a) => (
+                  <option key={a.id} value={a.id}>
+                    {a.name}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border text-left">
+                  <th className="py-3 pr-6 text-xs font-semibold text-muted uppercase tracking-wider">
+                    Variant
+                  </th>
+                  <th className="py-3 pr-6 text-xs font-semibold text-muted uppercase tracking-wider">
+                    DMs Sent
+                  </th>
+                  <th className="py-3 pr-6 text-xs font-semibold text-muted uppercase tracking-wider">
+                    Link Clicks
+                  </th>
+                  <th className="py-3 text-xs font-semibold text-muted uppercase tracking-wider">
+                    CTR
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {abStats
+                  ?.filter((v) => v.variant === "A" || v.variant === "B")
+                  .map((v) => (
+                    <tr key={v.variant}>
+                      <td className="py-3 pr-6">
+                        <span className="inline-flex items-center rounded-md bg-accent/15 px-2.5 py-1 text-xs font-bold text-accent">
+                          Variant {v.variant}
+                        </span>
+                      </td>
+                      <td className="py-3 pr-6 font-medium text-foreground">
+                        {v.sent}
+                      </td>
+                      <td className="py-3 pr-6 font-medium text-foreground">
+                        {v.clicks}
+                      </td>
+                      <td className="py-3 font-medium text-foreground">
+                        {v.ctr}%
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
