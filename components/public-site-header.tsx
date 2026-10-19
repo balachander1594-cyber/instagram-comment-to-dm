@@ -17,7 +17,7 @@ export default function PublicSiteHeader({ active }: PublicSiteHeaderProps) {
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3" aria-label="LeadDoor home">
           <span className="flex h-9 w-9 items-center justify-center border border-cyan-200/20 bg-cyan-300/10 text-sm font-black text-cyan-100">
-            CC
+            LD
           </span>
           <span className="text-lg font-bold text-white">LeadDoor</span>
         </Link>
