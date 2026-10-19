@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db/client";
 import { getDMQueue } from "@/lib/queue/client";
-import { parseCommentEvents, verifyWebhookSignature } from "@/lib/meta/webhook";
+import { parseCommentEvents, parseMessageEvents, verifyWebhookSignature } from "@/lib/meta/webhook";
 import { Prisma } from "@/app/generated/prisma/client";
 
 export async function GET(request: NextRequest) {
@@ -94,6 +94,29 @@ export async function POST(request: NextRequest) {
         processedAt: new Date(),
       },
     });
+
+    // Messaging events (DMs, story replies) — hand off to the worker.
+    const messageEvents = parseMessageEvents(
+      payload as Parameters<typeof parseMessageEvents>[0]
+    );
+
+    for (const event of messageEvents) {
+      await queue.add(
+        "process-inbound-message",
+        {
+          instagramAccountId: event.instagramAccountId,
+          senderId: event.senderId,
+          senderName: event.senderName,
+          text: event.text,
+          timestamp: event.timestamp,
+          isStoryReply: event.isStoryReply,
+          mid: event.mid,
+        },
+        {
+          jobId: `inbound:${event.instagramAccountId}:${event.mid}`,
+        }
+      );
+    }
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {

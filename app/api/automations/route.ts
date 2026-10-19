@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getCurrentWorkspaceId } from "@/lib/auth";
 import { prisma } from "@/lib/db/client";
+import { dbx } from "@/lib/db/extended";
 import { getEffectivePlan, PLAN_LIMITS } from "@/lib/billing/plans";
 import { calculateCtr, normalizeTopKeywords } from "@/lib/tracking/analytics";
 import { buildTrackedUrl } from "@/lib/tracking/message";
@@ -12,27 +13,70 @@ import {
   getCurrentWorkspaceContext,
 } from "@/lib/workspace-access";
 
+const featureFieldSchemas = {
+  excludedKeywords: z.array(z.string().min(1).max(50)).max(10),
+  publicReplyEnabled: z.boolean(),
+  publicReplyText: z.string().max(1000).nullable(),
+  minDelaySeconds: z.number().int().min(0).max(3600),
+  maxDelaySeconds: z.number().int().min(0).max(3600),
+  followNudgeEnabled: z.boolean(),
+  followNudgeMessage: z.string().max(1000).nullable(),
+  quickReplies: z.array(z.string().min(1).max(20)).max(3),
+  autoTag: z.string().max(50).nullable(),
+  hideKeywords: z.array(z.string().min(1).max(50)).max(10),
+  abTestEnabled: z.boolean(),
+  dmMessageVariantB: z.string().max(1000).nullable(),
+  storyTriggerEnabled: z.boolean(),
+};
+
 const createAutomationSchema = z.object({
   name: z.string().min(1).max(100),
   goal: z.string().min(1).max(120).optional().nullable(),
   instagramAccountId: z.string().min(1).optional().nullable(),
-  postId: z.string().min(1),
+  postId: z.string().min(1).nullable().optional(),
   postUrl: z.string().url().optional().nullable(),
   keywords: z.array(z.string().min(1).max(50)).min(1).max(10),
   dmMessage: z.string().min(1).max(1000),
   trackedDestinationUrl: z.string().url().optional().nullable(),
   isActive: z.boolean().optional().default(true),
   wholeWordMatch: z.boolean().optional().default(true),
+  excludedKeywords: featureFieldSchemas.excludedKeywords.default([]),
+  publicReplyEnabled: featureFieldSchemas.publicReplyEnabled.default(false),
+  publicReplyText: featureFieldSchemas.publicReplyText.optional(),
+  minDelaySeconds: featureFieldSchemas.minDelaySeconds.default(0),
+  maxDelaySeconds: featureFieldSchemas.maxDelaySeconds.default(0),
+  followNudgeEnabled: featureFieldSchemas.followNudgeEnabled.default(false),
+  followNudgeMessage: featureFieldSchemas.followNudgeMessage.optional(),
+  quickReplies: featureFieldSchemas.quickReplies.default([]),
+  autoTag: featureFieldSchemas.autoTag.optional(),
+  hideKeywords: featureFieldSchemas.hideKeywords.default([]),
+  abTestEnabled: featureFieldSchemas.abTestEnabled.default(false),
+  dmMessageVariantB: featureFieldSchemas.dmMessageVariantB.optional(),
+  storyTriggerEnabled: featureFieldSchemas.storyTriggerEnabled.default(false),
 });
 
 const updateAutomationSchema = z.object({
   name: z.string().min(1).max(100).optional(),
   goal: z.string().min(1).max(120).optional().nullable(),
+  postId: z.string().min(1).nullable().optional(),
   keywords: z.array(z.string().min(1).max(50)).min(1).max(10).optional(),
   dmMessage: z.string().min(1).max(1000).optional(),
   isActive: z.boolean().optional(),
   wholeWordMatch: z.boolean().optional(),
   reportShareEnabled: z.boolean().optional(),
+  excludedKeywords: featureFieldSchemas.excludedKeywords.optional(),
+  publicReplyEnabled: featureFieldSchemas.publicReplyEnabled.optional(),
+  publicReplyText: featureFieldSchemas.publicReplyText.optional(),
+  minDelaySeconds: featureFieldSchemas.minDelaySeconds.optional(),
+  maxDelaySeconds: featureFieldSchemas.maxDelaySeconds.optional(),
+  followNudgeEnabled: featureFieldSchemas.followNudgeEnabled.optional(),
+  followNudgeMessage: featureFieldSchemas.followNudgeMessage.optional(),
+  quickReplies: featureFieldSchemas.quickReplies.optional(),
+  autoTag: featureFieldSchemas.autoTag.optional(),
+  hideKeywords: featureFieldSchemas.hideKeywords.optional(),
+  abTestEnabled: featureFieldSchemas.abTestEnabled.optional(),
+  dmMessageVariantB: featureFieldSchemas.dmMessageVariantB.optional(),
+  storyTriggerEnabled: featureFieldSchemas.storyTriggerEnabled.optional(),
 });
 
 export async function GET(request: NextRequest) {
@@ -170,7 +214,7 @@ export async function GET(request: NextRequest) {
 
       return {
         ...automation,
-        trackedLinks: automation.trackedLinks.map((link) => ({
+        trackedLinks: automation.trackedLinks.map((link: any) => ({
           ...link,
           trackedUrl: buildTrackedUrl(link.slug),
         })),
@@ -271,16 +315,29 @@ export async function POST(request: NextRequest) {
 
   const { trackedDestinationUrl } = parsed.data;
 
-  const automation = await prisma.automation.create({
+  const automation = await dbx.automation.create({
     data: {
       name: parsed.data.name,
       goal: parsed.data.goal,
-      postId: parsed.data.postId,
+      postId: parsed.data.postId ?? null,
       postUrl: parsed.data.postUrl,
       keywords: parsed.data.keywords,
       dmMessage: parsed.data.dmMessage,
       isActive: parsed.data.isActive,
       wholeWordMatch: parsed.data.wholeWordMatch,
+      excludedKeywords: parsed.data.excludedKeywords,
+      publicReplyEnabled: parsed.data.publicReplyEnabled,
+      publicReplyText: parsed.data.publicReplyText ?? null,
+      minDelaySeconds: parsed.data.minDelaySeconds,
+      maxDelaySeconds: parsed.data.maxDelaySeconds,
+      followNudgeEnabled: parsed.data.followNudgeEnabled,
+      followNudgeMessage: parsed.data.followNudgeMessage ?? null,
+      quickReplies: parsed.data.quickReplies,
+      autoTag: parsed.data.autoTag ?? null,
+      hideKeywords: parsed.data.hideKeywords,
+      abTestEnabled: parsed.data.abTestEnabled,
+      dmMessageVariantB: parsed.data.dmMessageVariantB ?? null,
+      storyTriggerEnabled: parsed.data.storyTriggerEnabled,
       workspaceId,
       instagramAccountId: instagramAccount.id,
       reportShareSlug: generateReportShareSlug(),
@@ -359,7 +416,7 @@ export async function PATCH(request: NextRequest) {
     );
   }
 
-  const updated = await prisma.automation.update({
+  const updated = await dbx.automation.update({
     where: { id: automationId },
     data: parsed.data,
   });

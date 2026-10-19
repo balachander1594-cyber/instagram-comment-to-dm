@@ -208,8 +208,7 @@ export async function refreshLongLivedToken(
   };
 }
 
-export async function subscribeInstagramAccountToWebhooks(
-  instagramAccountId: string,
+export async function subscribeInstagramAccountToWebhooks(  instagramAccountId: string,
   accessToken: string
 ): Promise<{ success: boolean }> {
   const response = await fetch(
@@ -235,4 +234,75 @@ export async function debugToken(inputToken: string, accessToken: string) {
   url.searchParams.set("access_token", accessToken);
   const response = await fetch(url.toString());
   return handleResponse(response);
+}
+
+export async function sendDirectMessage(
+  accessToken: string,
+  instagramAccountId: string,
+  recipientId: string,
+  text: string,
+  quickReplies?: string[]
+): Promise<{ recipient_id: string; message_id: string }> {
+  const response = await fetch(
+    `${instagramGraphBase()}/${instagramAccountId}/messages`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify({
+        recipient: { id: recipientId },
+        message: {
+          text,
+          ...(quickReplies?.length
+            ? {
+                quick_replies: quickReplies
+                  .slice(0, 3)
+                  .map((title, index) => ({
+                    content_type: "text",
+                    title: title.slice(0, 20),
+                    payload: `qr_${index}`,
+                  })),
+              }
+            : {}),
+        },
+      }),
+    }
+  );
+
+  return handleResponse(response);
+}
+
+export async function replyToCommentPublicly(
+  accessToken: string,
+  commentId: string,
+  message: string
+): Promise<{ id: string }> {
+  const response = await fetch(`${instagramGraphBase()}/${commentId}/replies`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ message }),
+  });
+
+  return handleResponse<{ id: string }>(response);
+}
+
+export async function hideComment(
+  accessToken: string,
+  commentId: string
+): Promise<void> {
+  const response = await fetch(`${instagramGraphBase()}/${commentId}/hide`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ hide: true }),
+  });
+
+  await handleResponse<unknown>(response);
 }
