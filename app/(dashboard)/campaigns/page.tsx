@@ -14,7 +14,7 @@ interface Campaign {
   id: string;
   name: string;
   goal: string | null;
-  postId: string;
+  postId: string | null;
   postUrl: string | null;
   keywords: string[];
   dmMessage: string;
@@ -51,6 +51,10 @@ export default function CampaignsPage() {
   const [accounts, setAccounts] = useState<AccountOption[]>([]);
   const [selectedAccountId, setSelectedAccountId] = useState("all");
   const [loading, setLoading] = useState(true);
+  const [backtracking, setBacktracking] = useState<Record<string, boolean>>({});
+  const [backtrackFeedback, setBacktrackFeedback] = useState<
+    Record<string, string | null>
+  >({});
 
   const fetchAutomations = useCallback(async () => {
     try {
@@ -130,6 +134,34 @@ export default function CampaignsPage() {
       setAutomations((prev) => prev.filter((a) => a.id !== id));
     } catch (err) {
       console.error("Failed to delete:", err);
+    }
+  }
+
+  async function handleBacktrack(id: string) {
+    setBacktracking((prev) => ({ ...prev, [id]: true }));
+    setBacktrackFeedback((prev) => ({ ...prev, [id]: null }));
+    try {
+      const res = await fetch("/api/automations/backtrack", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ automationId: id }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setBacktrackFeedback((prev) => ({
+          ...prev,
+          [id]: `Queued ${data.enqueued}`,
+        }));
+      } else {
+        setBacktrackFeedback((prev) => ({
+          ...prev,
+          [id]: data.error ?? "Backtrack failed",
+        }));
+      }
+    } catch {
+      setBacktrackFeedback((prev) => ({ ...prev, [id]: "Backtrack failed" }));
+    } finally {
+      setBacktracking((prev) => ({ ...prev, [id]: false }));
     }
   }
 
@@ -213,6 +245,11 @@ export default function CampaignsPage() {
                   >
                     {auto.isActive ? "Active" : "Paused"}
                   </span>
+                  {auto.postId === null && (
+                    <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-accent/10 text-accent">
+                      Universal
+                    </span>
+                  )}
                 </div>
 
                 {auto.goal && (
@@ -337,6 +374,22 @@ export default function CampaignsPage() {
 
               {/* Actions */}
               <div className="flex items-center gap-2">
+                {/* Backtrack */}
+                <button
+                  type="button"
+                  onClick={() => handleBacktrack(auto.id)}
+                  disabled={backtracking[auto.id]}
+                  title="Re-process comments from the last 7 days"
+                  className="inline-flex items-center justify-center rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-muted transition-colors hover:border-border-hover hover:text-foreground disabled:opacity-50"
+                >
+                  {backtracking[auto.id] ? "Queueing…" : "Backtrack"}
+                </button>
+                {backtrackFeedback[auto.id] && (
+                  <span className="text-xs text-muted">
+                    {backtrackFeedback[auto.id]}
+                  </span>
+                )}
+
                 {/* Toggle */}
                 <button
                   onClick={() => toggleActive(auto.id, auto.isActive)}
