@@ -13,12 +13,18 @@ CREATE TYPE "DmStatus_new" AS ENUM (
   'NUDGE_PENDING', 'EXPIRED', 'SKIPPED_WINDOW_CLOSED'
 );
 
+-- Drop the column default first: Postgres cannot auto-cast a default value
+-- to the new enum type (error 42804). Re-applied after the swap.
+ALTER TABLE "DmLog" ALTER COLUMN "status" DROP DEFAULT;
+
 ALTER TABLE "DmLog" ALTER COLUMN "status" TYPE "DmStatus_new"
   USING "status"::text::"DmStatus_new";
 
 ALTER TYPE "DmStatus" RENAME TO "DmStatus_old";
 ALTER TYPE "DmStatus_new" RENAME TO "DmStatus";
 DROP TYPE "DmStatus_old";
+
+ALTER TABLE "DmLog" ALTER COLUMN "status" SET DEFAULT 'PENDING';
 
 -- SequenceDelivery.status also uses DmStatus
 -- (table created below, after the swap, so it picks up the new type directly)
