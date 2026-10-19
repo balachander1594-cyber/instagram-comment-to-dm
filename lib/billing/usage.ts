@@ -26,7 +26,7 @@ async function resetUsageIfNeededTx(
 }
 
 export async function resetUsageIfNeeded(workspaceId: string): Promise<void> {
-  await prisma.$transaction(async (tx) => {
+  await prisma.$transaction(async (tx: any) => {
     await resetUsageIfNeededTx(tx, workspaceId);
   });
 }
@@ -42,7 +42,7 @@ export interface WorkspaceDMReservation {
 export async function reserveWorkspaceDMSend(
   workspaceId: string
 ): Promise<WorkspaceDMReservation> {
-  return prisma.$transaction(async (tx) => {
+  return prisma.$transaction(async (tx: any) => {
     await resetUsageIfNeededTx(tx, workspaceId);
 
     const monthStart = getMonthStart();

@@ -233,7 +233,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
                     This campaign does not have a tracked link.
                   </p>
                 )}
-                {report.trackedLinks.map((link) => (
+                {report.trackedLinks.map((link: any) => (
                   <div
                     key={link.slug}
                     className="flex items-center justify-between gap-4"
@@ -259,7 +259,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
                 Keywords
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {report.campaign.keywords.map((keyword) => (
+                {report.campaign.keywords.map((keyword: any) => (
                   <span
                     key={keyword}
                     className="border border-white/10 bg-zinc-950 px-2 py-1 text-xs font-semibold text-zinc-300"

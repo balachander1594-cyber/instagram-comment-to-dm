@@ -182,7 +182,7 @@ export async function getCampaignReportBySlug(shareSlug: string) {
     },
     topKeywords,
     daily,
-    trackedLinks: automation.trackedLinks.map((link) => ({
+    trackedLinks: automation.trackedLinks.map((link: any) => ({
       slug: link.slug,
       destinationHost: getHostname(link.destinationUrl),
       clicks: link._count.clicks,
