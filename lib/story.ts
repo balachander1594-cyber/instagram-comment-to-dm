@@ -22,6 +22,7 @@ import {
 } from "@/lib/tracking/message";
 import { matchKeywords } from "@/lib/utils/keyword-matcher";
 import { scheduleSequenceSteps } from "@/lib/sequences";
+import { Prisma } from "@/app/generated/prisma/client";
 
 function formatError(error: unknown): string {
   return error instanceof Error ? error.message : "Unknown error";
@@ -40,7 +41,7 @@ async function recordStoryEvent(
         source: "WORKER",
         level,
         message,
-        payload,
+        payload: (payload ?? undefined) as Prisma.InputJsonValue | undefined,
       },
     });
   } catch (recordError) {
