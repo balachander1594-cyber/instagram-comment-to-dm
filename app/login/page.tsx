@@ -62,11 +62,11 @@ export default async function LoginPage({
 
         <div className="glass-strong rounded-2xl p-8 shadow-2xl shadow-black/40">
           {selectedTemplate && !checkEmail && (
-            <div className="mb-5 border border-cyan-200/20 bg-cyan-300/10 p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-cyan-100">
+            <div className="mb-5 border border-[#C9A227]/30 bg-[#C9A227]/10 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#7A5F14]">
                 Template selected
               </p>
-              <p className="mt-2 text-sm font-semibold text-white">
+              <p className="mt-2 text-sm font-semibold text-[#101C3D]">
                 {selectedTemplate.title}
               </p>
             </div>
@@ -96,13 +96,13 @@ export default async function LoginPage({
                   required
                   autoComplete="email"
                   placeholder="you@company.com"
-                  className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-sm text-foreground placeholder:text-zinc-500 focus:border-accent/40 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-sm text-foreground placeholder:text-[#6B7590] focus:border-accent/40 focus:outline-none transition-colors"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all hover:shadow-xl hover:shadow-indigo-500/30"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-6 py-3.5 text-sm font-semibold text-[#101C3D] shadow-lg shadow-indigo-500/25 transition-all hover:shadow-xl hover:shadow-indigo-500/30"
               >
                 Email me a magic link
               </button>

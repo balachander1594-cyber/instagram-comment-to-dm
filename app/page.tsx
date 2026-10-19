@@ -228,28 +228,28 @@ function SparkIcon() {
 
 function InstagramPost() {
   return (
-    <div className="border border-white/10 bg-zinc-950 p-3 shadow-2xl shadow-black/40">
-      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+    <div className="border border-[#101C3D]/10 bg-white p-3 shadow-2xl shadow-black/40">
+      <div className="flex items-center justify-between border-b border-[#101C3D]/10 pb-3">
         <div className="flex items-center gap-3">
           <div className="h-9 w-9 rounded-full bg-gradient-to-br from-pink-500 via-orange-400 to-yellow-300" />
           <div>
-            <p className="text-sm font-semibold text-white">@studio.store</p>
-            <p className="text-xs text-zinc-500">Reel campaign</p>
+            <p className="text-sm font-semibold text-[#101C3D]">@studio.store</p>
+            <p className="text-xs text-[#6B7590]">Reel campaign</p>
           </div>
         </div>
-        <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-300">
+        <span className="rounded-full bg-[#101C3D]/5 px-3 py-1 text-xs text-[#3E4A68]">
           Live
         </span>
       </div>
 
       <div className="mt-3 aspect-[4/5] overflow-hidden bg-[linear-gradient(135deg,#f97316_0%,#ec4899_48%,#22d3ee_100%)] p-4">
-        <div className="flex h-full flex-col justify-between border border-white/20 bg-black/20 p-4">
-          <p className="text-xs font-semibold text-white/80">New drop</p>
+        <div className="flex h-full flex-col justify-between border border-white/40 bg-white/25 p-4">
+          <p className="text-xs font-semibold text-[#101C3D]/80">New drop</p>
           <div>
-            <p className="text-2xl font-bold leading-tight text-white">
+            <p className="text-2xl font-bold leading-tight text-[#101C3D]">
               Comment LINK
             </p>
-            <p className="mt-2 text-sm text-white/80">
+            <p className="mt-2 text-sm text-[#101C3D]/80">
               Get the full guide in your inbox.
             </p>
           </div>
@@ -257,13 +257,13 @@ function InstagramPost() {
       </div>
 
       <div className="mt-3 space-y-2">
-        <div className="border border-white/10 bg-white/[0.03] p-3">
-          <p className="text-xs font-semibold text-white">@maya.co</p>
-          <p className="mt-1 text-sm text-zinc-300">LINK please</p>
+        <div className="border border-[#101C3D]/10 bg-white/[0.03] p-3">
+          <p className="text-xs font-semibold text-[#101C3D]">@maya.co</p>
+          <p className="mt-1 text-sm text-[#3E4A68]">LINK please</p>
         </div>
-        <div className="border border-emerald-300/20 bg-emerald-300/10 p-3">
-          <p className="text-xs font-semibold text-emerald-100">Matched keyword</p>
-          <p className="mt-1 text-sm text-zinc-200">Queued private reply</p>
+        <div className="border border-emerald-600/25 bg-emerald-600/10 p-3">
+          <p className="text-xs font-semibold text-emerald-800">Matched keyword</p>
+          <p className="mt-1 text-sm text-[#3E4A68]">Queued private reply</p>
         </div>
       </div>
     </div>
@@ -272,37 +272,37 @@ function InstagramPost() {
 
 function BuilderPreview() {
   return (
-    <div className="border border-white/10 bg-zinc-950 shadow-2xl shadow-black/40">
-      <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+    <div className="border border-[#101C3D]/10 bg-white shadow-2xl shadow-black/40">
+      <div className="flex items-center justify-between border-b border-[#101C3D]/10 px-4 py-3">
         <div>
-          <p className="text-sm font-semibold text-white">Product guide reply</p>
-          <p className="text-xs text-zinc-500">Campaign builder</p>
+          <p className="text-sm font-semibold text-[#101C3D]">Product guide reply</p>
+          <p className="text-xs text-[#6B7590]">Campaign builder</p>
         </div>
-        <span className="bg-cyan-300 px-3 py-1 text-xs font-bold text-zinc-950">
+        <span className="bg-[#C9A227] px-3 py-1 text-xs font-bold text-[#101C3D]">
           Active
         </span>
       </div>
 
       <div className="grid gap-3 p-4 md:grid-cols-[0.95fr_1.05fr]">
         <div className="space-y-3">
-          <div className="border border-white/10 bg-white/[0.03] p-4">
-            <p className="text-xs font-semibold text-zinc-500">POST OR REEL</p>
+          <div className="border border-[#101C3D]/10 bg-white/[0.03] p-4">
+            <p className="text-xs font-semibold text-[#6B7590]">POST OR REEL</p>
             <div className="mt-3 flex items-center gap-3">
               <div className="h-14 w-14 bg-[linear-gradient(135deg,#f43f5e,#22d3ee)]" />
               <div>
-                <p className="text-sm font-semibold text-white">Spring drop reel</p>
-                <p className="text-xs text-zinc-500">12.8k views</p>
+                <p className="text-sm font-semibold text-[#101C3D]">Spring drop reel</p>
+                <p className="text-xs text-[#6B7590]">12.8k views</p>
               </div>
             </div>
           </div>
 
-          <div className="border border-white/10 bg-white/[0.03] p-4">
-            <p className="text-xs font-semibold text-zinc-500">KEYWORDS</p>
+          <div className="border border-[#101C3D]/10 bg-white/[0.03] p-4">
+            <p className="text-xs font-semibold text-[#6B7590]">KEYWORDS</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {["LINK", "GUIDE", "PRICE"].map((item) => (
                 <span
                   key={item}
-                  className="border border-cyan-200/20 bg-cyan-300/10 px-3 py-1 text-xs font-semibold text-cyan-100"
+                  className="border border-[#C9A227]/30 bg-[#C9A227]/10 px-3 py-1 text-xs font-semibold text-[#7A5F14]"
                 >
                   {item}
                 </span>
@@ -311,11 +311,11 @@ function BuilderPreview() {
           </div>
         </div>
 
-        <div className="flex flex-col border border-white/10 bg-white/[0.03] p-4">
-          <p className="text-xs font-semibold text-zinc-500">PRIVATE REPLY</p>
-          <div className="mt-4 flex-1 border border-white/10 bg-zinc-950 p-4 text-sm leading-6 text-zinc-200">
+        <div className="flex flex-col border border-[#101C3D]/10 bg-white/[0.03] p-4">
+          <p className="text-xs font-semibold text-[#6B7590]">PRIVATE REPLY</p>
+          <div className="mt-4 flex-1 border border-[#101C3D]/10 bg-white p-4 text-sm leading-6 text-[#3E4A68]">
             Hey {"{username}"}, here is the product guide you asked for:
-            <span className="text-cyan-200"> shop.link/guide</span>
+            <span className="text-[#7A5F14]"> shop.link/guide</span>
           </div>
           <div className="mt-4 grid grid-cols-3 gap-2 text-center">
             {[
@@ -323,9 +323,9 @@ function BuilderPreview() {
               ["0", "dupes"],
               ["sent", "status"],
             ].map(([value, label]) => (
-              <div key={label} className="border border-white/10 bg-zinc-950 p-2">
-                <p className="text-sm font-bold text-white">{value}</p>
-                <p className="text-[11px] text-zinc-500">{label}</p>
+              <div key={label} className="border border-[#101C3D]/10 bg-white p-2">
+                <p className="text-sm font-bold text-[#101C3D]">{value}</p>
+                <p className="text-[11px] text-[#6B7590]">{label}</p>
               </div>
             ))}
           </div>
@@ -337,23 +337,23 @@ function BuilderPreview() {
 
 function DashboardVisual() {
   return (
-    <div className="border border-white/10 bg-zinc-950 p-4 shadow-2xl shadow-black/40">
+    <div className="border border-[#101C3D]/10 bg-white p-4 shadow-2xl shadow-black/40">
       <div className="grid gap-3 sm:grid-cols-3">
         {[
           ["Active campaigns", "8"],
           ["DMs this month", "1,284"],
           ["Delivery status", "99%"],
         ].map(([label, value]) => (
-          <div key={label} className="border border-white/10 bg-white/[0.03] p-4">
-            <p className="text-xs text-zinc-500">{label}</p>
-            <p className="mt-2 text-2xl font-bold text-white">{value}</p>
+          <div key={label} className="border border-[#101C3D]/10 bg-white/[0.03] p-4">
+            <p className="text-xs text-[#6B7590]">{label}</p>
+            <p className="mt-2 text-2xl font-bold text-[#101C3D]">{value}</p>
           </div>
         ))}
       </div>
-      <div className="mt-3 border border-white/10 bg-white/[0.03] p-4">
+      <div className="mt-3 border border-[#101C3D]/10 bg-white/[0.03] p-4">
         <div className="flex items-center justify-between">
-          <p className="text-sm font-semibold text-white">Recent replies</p>
-          <p className="text-xs text-zinc-500">Live logs</p>
+          <p className="text-sm font-semibold text-[#101C3D]">Recent replies</p>
+          <p className="text-xs text-[#6B7590]">Live logs</p>
         </div>
         <div className="mt-4 space-y-2">
           {[
@@ -363,11 +363,11 @@ function DashboardVisual() {
           ].map(([user, automation, status]) => (
             <div
               key={`${user}-${automation}`}
-              className="grid grid-cols-[1fr_1.1fr_auto] items-center gap-3 border border-white/10 bg-zinc-950 px-3 py-2 text-sm"
+              className="grid grid-cols-[1fr_1.1fr_auto] items-center gap-3 border border-[#101C3D]/10 bg-white px-3 py-2 text-sm"
             >
-              <span className="truncate text-white">{user}</span>
-              <span className="truncate text-zinc-400">{automation}</span>
-              <span className="bg-emerald-300/10 px-2 py-1 text-xs font-semibold text-emerald-100">
+              <span className="truncate text-[#101C3D]">{user}</span>
+              <span className="truncate text-[#5B6478]">{automation}</span>
+              <span className="bg-emerald-600/10 px-2 py-1 text-xs font-semibold text-emerald-800">
                 {status}
               </span>
             </div>
@@ -381,16 +381,16 @@ function DashboardVisual() {
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_82%)]" />
-      <div className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-[linear-gradient(115deg,rgba(34,211,238,0.16),rgba(16,185,129,0.08)_42%,rgba(244,63,94,0.10)_70%,rgba(9,9,11,0)_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(16,28,61,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,28,61,0.05)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_82%)]" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-[linear-gradient(115deg,rgba(201,162,39,0.14),rgba(16,28,61,0.05)_42%,rgba(201,162,39,0.08)_70%,rgba(253,252,248,0)_100%)]" />
 
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-background/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-40 border-b border-[#101C3D]/10 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center gap-3" aria-label="LeadDoor home">
-            <span className="flex h-9 w-9 items-center justify-center border border-cyan-200/20 bg-cyan-300/10 text-sm font-black text-cyan-100">
-              CC
+            <span className="flex h-9 w-9 items-center justify-center border border-[#C9A227]/30 bg-[#C9A227]/10 text-sm font-black text-[#7A5F14]">
+              LD
             </span>
-            <span className="text-lg font-bold text-white">LeadDoor</span>
+            <span className="text-lg font-bold text-[#101C3D]">LeadDoor</span>
           </Link>
 
           <nav className="hidden items-center gap-7 md:flex">
@@ -398,7 +398,7 @@ export default function Home() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-zinc-400 transition hover:text-white"
+                className="text-sm font-medium text-[#5B6478] transition hover:text-[#101C3D]"
               >
                 {link.label}
               </a>
@@ -408,13 +408,13 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <Link
               href="/login"
-              className="hidden px-4 py-2 text-sm font-semibold text-zinc-300 transition hover:text-white sm:inline-flex"
+              className="hidden px-4 py-2 text-sm font-semibold text-[#3E4A68] transition hover:text-[#101C3D] sm:inline-flex"
             >
               Sign in
             </Link>
             <Link
               href="/login"
-              className="inline-flex items-center justify-center gap-2 bg-cyan-300 px-4 py-2 text-sm font-bold text-zinc-950 transition hover:bg-cyan-200"
+              className="inline-flex items-center justify-center gap-2 bg-[#C9A227] px-4 py-2 text-sm font-bold text-[#101C3D] transition hover:bg-[#D9B545]"
             >
               Start free
               <ArrowIcon />
@@ -425,16 +425,16 @@ export default function Home() {
 
       <section className="mx-auto grid w-full max-w-7xl items-center gap-10 px-5 pb-16 pt-12 sm:px-6 sm:pt-18 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:pb-24">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 border border-emerald-300/20 bg-emerald-300/10 px-3 py-2 text-sm font-semibold text-emerald-100">
+          <div className="inline-flex items-center gap-2 border border-emerald-600/25 bg-emerald-600/10 px-3 py-2 text-sm font-semibold text-emerald-800">
             <SparkIcon />
             Built for Meta-compliant Instagram growth
           </div>
 
-          <h1 className="mt-7 text-balance text-5xl font-black leading-[1.02] text-white sm:text-6xl lg:text-7xl">
+          <h1 className="mt-7 text-balance text-5xl font-black leading-[1.02] text-[#101C3D] sm:text-6xl lg:text-7xl">
             Make every comment start the right DM
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-[#3E4A68]">
             LeadDoor turns keyword comments on posts and reels into private
             replies, campaign logs, and measurable lead capture for businesses,
             creators, and agencies. Every comment opens a door.
@@ -443,14 +443,14 @@ export default function Home() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/login"
-              className="inline-flex items-center justify-center gap-2 bg-cyan-300 px-6 py-3 text-sm font-bold text-zinc-950 shadow-lg shadow-cyan-950/40 transition hover:bg-cyan-200"
+              className="inline-flex items-center justify-center gap-2 bg-[#C9A227] px-6 py-3 text-sm font-bold text-[#101C3D] shadow-lg shadow-[#C9A227]/25 transition hover:bg-[#D9B545]"
             >
               Start free
               <ArrowIcon />
             </Link>
             <a
               href="#product"
-              className="inline-flex items-center justify-center border border-white/10 bg-white/[0.04] px-6 py-3 text-sm font-bold text-white transition hover:border-white/20 hover:bg-white/[0.08]"
+              className="inline-flex items-center justify-center border border-[#101C3D]/10 bg-[#101C3D]/[0.04] px-6 py-3 text-sm font-bold text-[#101C3D] transition hover:border-[#101C3D]/20 hover:bg-[#101C3D]/[0.06]"
             >
               See the workflow
             </a>
@@ -458,29 +458,29 @@ export default function Home() {
 
           <dl className="mt-10 grid max-w-xl grid-cols-3 gap-3">
             {heroStats.map((stat) => (
-              <div key={stat.label} className="border border-white/10 bg-white/[0.035] p-4">
-                <dt className="text-2xl font-black text-white">{stat.value}</dt>
-                <dd className="mt-1 text-xs leading-5 text-zinc-500">{stat.label}</dd>
+              <div key={stat.label} className="border border-[#101C3D]/10 bg-[#101C3D]/[0.03] p-4">
+                <dt className="text-2xl font-black text-[#101C3D]">{stat.value}</dt>
+                <dd className="mt-1 text-xs leading-5 text-[#6B7590]">{stat.label}</dd>
               </div>
             ))}
           </dl>
         </div>
 
         <div className="relative">
-          <div className="absolute -left-4 top-8 hidden h-20 w-20 border border-cyan-200/20 bg-cyan-300/10 lg:block" />
-          <div className="absolute -right-4 bottom-10 hidden h-24 w-24 border border-rose-200/20 bg-rose-300/10 lg:block" />
+          <div className="absolute -left-4 top-8 hidden h-20 w-20 border border-[#C9A227]/30 bg-[#C9A227]/10 lg:block" />
+          <div className="absolute -right-4 bottom-10 hidden h-24 w-24 border border-[#C9A227]/30 bg-[#C9A227]/10 lg:block" />
           <div className="relative grid gap-4 sm:grid-cols-[0.74fr_1fr]">
             <InstagramPost />
             <div className="space-y-4 sm:pt-16">
               <BuilderPreview />
               <div className="grid grid-cols-2 gap-4">
-                <div className="border border-white/10 bg-zinc-950 p-4">
-                  <p className="text-xs text-zinc-500">Plan guard</p>
-                  <p className="mt-2 text-lg font-bold text-white">2,000/mo</p>
+                <div className="border border-[#101C3D]/10 bg-white p-4">
+                  <p className="text-xs text-[#6B7590]">Plan guard</p>
+                  <p className="mt-2 text-lg font-bold text-[#101C3D]">2,000/mo</p>
                 </div>
-                <div className="border border-white/10 bg-zinc-950 p-4">
-                  <p className="text-xs text-zinc-500">Worker</p>
-                  <p className="mt-2 text-lg font-bold text-white">Running</p>
+                <div className="border border-[#101C3D]/10 bg-white p-4">
+                  <p className="text-xs text-[#6B7590]">Worker</p>
+                  <p className="mt-2 text-lg font-bold text-[#101C3D]">Running</p>
                 </div>
               </div>
             </div>
@@ -488,16 +488,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-zinc-950/55 py-6">
+      <section className="border-y border-[#101C3D]/10 bg-white/55 py-6">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-5 sm:px-6 lg:px-8">
-          <p className="text-sm font-semibold text-zinc-400">
+          <p className="text-sm font-semibold text-[#5B6478]">
             Designed for teams turning social attention into owned conversations
           </p>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8">
             {audiences.map((audience) => (
               <div
                 key={audience}
-                className="border border-white/10 bg-white/[0.03] px-3 py-3 text-center text-sm font-semibold text-zinc-300"
+                className="border border-[#101C3D]/10 bg-white/[0.03] px-3 py-3 text-center text-sm font-semibold text-[#3E4A68]"
               >
                 {audience}
               </div>
@@ -509,11 +509,11 @@ export default function Home() {
       <section id="product" className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div>
-            <p className="text-sm font-bold uppercase text-cyan-200">Product workflow</p>
-            <h2 className="mt-3 text-4xl font-black leading-tight text-white sm:text-5xl">
+            <p className="text-sm font-bold uppercase text-[#7A5F14]">Product workflow</p>
+            <h2 className="mt-3 text-4xl font-black leading-tight text-[#101C3D] sm:text-5xl">
               A cleaner way to run Instagram DM campaigns
             </h2>
-            <p className="mt-5 text-base leading-8 text-zinc-400">
+            <p className="mt-5 text-base leading-8 text-[#5B6478]">
               The app separates business signup from Instagram connection, then
               gives each workspace real usage, billing, delivery, and log state.
             </p>
@@ -523,12 +523,12 @@ export default function Home() {
             {flowSteps.map((step) => (
               <article
                 key={step.title}
-                className="grid gap-4 border border-white/10 bg-white/[0.035] p-5 sm:grid-cols-[140px_1fr]"
+                className="grid gap-4 border border-[#101C3D]/10 bg-[#101C3D]/[0.03] p-5 sm:grid-cols-[140px_1fr]"
               >
-                <p className="text-sm font-bold text-emerald-200">{step.eyebrow}</p>
+                <p className="text-sm font-bold text-emerald-700">{step.eyebrow}</p>
                 <div>
-                  <h3 className="text-xl font-bold text-white">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-zinc-400">{step.description}</p>
+                  <h3 className="text-xl font-bold text-[#101C3D]">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#5B6478]">{step.description}</p>
                 </div>
               </article>
             ))}
@@ -536,23 +536,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-white/[0.025] py-20">
+      <section className="border-y border-[#101C3D]/10 bg-white/[0.025] py-20">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:items-center">
           <DashboardVisual />
 
           <div>
-            <p className="text-sm font-bold uppercase text-emerald-200">Operator dashboard</p>
-            <h2 className="mt-3 text-4xl font-black leading-tight text-white sm:text-5xl">
+            <p className="text-sm font-bold uppercase text-emerald-700">Operator dashboard</p>
+            <h2 className="mt-3 text-4xl font-black leading-tight text-[#101C3D] sm:text-5xl">
               Built to show what happened, not hide it
             </h2>
-            <p className="mt-5 text-base leading-8 text-zinc-400">
+            <p className="mt-5 text-base leading-8 text-[#5B6478]">
               Every comment event becomes traceable: queued, matched, sent,
               skipped, failed, rate-limited, or blocked by plan limits.
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {platformFeatures.slice(0, 4).map((feature) => (
-                <div key={feature} className="flex items-center gap-3 text-sm text-zinc-300">
-                  <span className="text-emerald-200">
+                <div key={feature} className="flex items-center gap-3 text-sm text-[#3E4A68]">
+                  <span className="text-emerald-700">
                     <CheckIcon />
                   </span>
                   {feature}
@@ -565,33 +565,33 @@ export default function Home() {
 
       <section id="use-cases" className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-bold uppercase text-cyan-200">Use cases</p>
-          <h2 className="mt-3 text-4xl font-black leading-tight text-white sm:text-5xl">
+          <p className="text-sm font-bold uppercase text-[#7A5F14]">Use cases</p>
+          <h2 className="mt-3 text-4xl font-black leading-tight text-[#101C3D] sm:text-5xl">
             Campaigns your team can launch without inbox chaos
           </h2>
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {campaignCards.map((card) => (
-            <article key={card.title} className="border border-white/10 bg-zinc-950 p-5">
-              <div className="mb-6 flex h-10 w-10 items-center justify-center border border-cyan-200/20 bg-cyan-300/10 text-cyan-100">
+            <article key={card.title} className="border border-[#101C3D]/10 bg-white p-5">
+              <div className="mb-6 flex h-10 w-10 items-center justify-center border border-[#C9A227]/30 bg-[#C9A227]/10 text-[#7A5F14]">
                 <SparkIcon />
               </div>
-              <h3 className="text-xl font-bold text-white">{card.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-zinc-400">{card.description}</p>
+              <h3 className="text-xl font-bold text-[#101C3D]">{card.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-[#5B6478]">{card.description}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="security" className="border-y border-white/10 bg-zinc-950/60 py-20">
+      <section id="security" className="border-y border-[#101C3D]/10 bg-white/60 py-20">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <div>
-            <p className="text-sm font-bold uppercase text-emerald-200">Trust and compliance</p>
-            <h2 className="mt-3 text-4xl font-black leading-tight text-white sm:text-5xl">
+            <p className="text-sm font-bold uppercase text-emerald-700">Trust and compliance</p>
+            <h2 className="mt-3 text-4xl font-black leading-tight text-[#101C3D] sm:text-5xl">
               Serious foundations for a public B2B product
             </h2>
-            <p className="mt-5 text-base leading-8 text-zinc-400">
+            <p className="mt-5 text-base leading-8 text-[#5B6478]">
               The system is designed around official APIs, encrypted tokens,
               idempotent queue processing, and Stripe-provisioned plans.
             </p>
@@ -601,9 +601,9 @@ export default function Home() {
             {platformFeatures.map((feature) => (
               <div
                 key={feature}
-                className="flex items-center gap-3 border border-white/10 bg-white/[0.035] p-4 text-sm font-semibold text-zinc-200"
+                className="flex items-center gap-3 border border-[#101C3D]/10 bg-[#101C3D]/[0.03] p-4 text-sm font-semibold text-[#3E4A68]"
               >
-                <span className="text-emerald-200">
+                <span className="text-emerald-700">
                   <CheckIcon />
                 </span>
                 {feature}
@@ -615,11 +615,11 @@ export default function Home() {
 
       <section id="pricing" className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-bold uppercase text-cyan-200">Pricing</p>
-          <h2 className="mt-3 text-4xl font-black leading-tight text-white sm:text-5xl">
+          <p className="text-sm font-bold uppercase text-[#7A5F14]">Pricing</p>
+          <h2 className="mt-3 text-4xl font-black leading-tight text-[#101C3D] sm:text-5xl">
             Free to test, simple to scale
           </h2>
-          <p className="mt-5 text-base leading-8 text-zinc-400">
+          <p className="mt-5 text-base leading-8 text-[#5B6478]">
             Each plan maps directly to campaign count and monthly DM volume.
             Stripe webhooks provision the workspace plan after checkout.
           </p>
@@ -631,20 +631,20 @@ export default function Home() {
               key={tier.name}
               className={`border p-6 ${
                 tier.featured
-                  ? "border-cyan-200/40 bg-cyan-300/10"
-                  : "border-white/10 bg-white/[0.035]"
+                  ? "border-[#C9A227]/40 bg-[#C9A227]/10"
+                  : "border-[#101C3D]/10 bg-[#101C3D]/[0.03]"
               }`}
             >
               <div className="flex min-h-24 items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-2xl font-black text-white">{tier.name}</h3>
-                  <p className="mt-2 text-sm leading-6 text-zinc-400">{tier.description}</p>
+                  <h3 className="text-2xl font-black text-[#101C3D]">{tier.name}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#5B6478]">{tier.description}</p>
                 </div>
                 <span
                   className={`px-3 py-1 text-xs font-bold ${
                     tier.featured
-                      ? "bg-cyan-300 text-zinc-950"
-                      : "border border-white/10 text-zinc-400"
+                      ? "bg-[#C9A227] text-[#101C3D]"
+                      : "border border-[#101C3D]/10 text-[#5B6478]"
                   }`}
                 >
                   {tier.label}
@@ -652,14 +652,14 @@ export default function Home() {
               </div>
 
               <div className="mt-7 flex items-end gap-1">
-                <span className="text-5xl font-black text-white">{tier.price}</span>
-                <span className="pb-2 text-sm text-zinc-500">/mo</span>
+                <span className="text-5xl font-black text-[#101C3D]">{tier.price}</span>
+                <span className="pb-2 text-sm text-[#6B7590]">/mo</span>
               </div>
 
               <ul className="mt-7 space-y-3">
                 {tier.features.map((feature) => (
-                  <li key={feature} className="flex gap-3 text-sm text-zinc-300">
-                    <span className="mt-0.5 text-emerald-200">
+                  <li key={feature} className="flex gap-3 text-sm text-[#3E4A68]">
+                    <span className="mt-0.5 text-emerald-700">
                       <CheckIcon />
                     </span>
                     {feature}
@@ -671,8 +671,8 @@ export default function Home() {
                 href="/login"
                 className={`mt-8 inline-flex w-full items-center justify-center gap-2 px-5 py-3 text-sm font-bold transition ${
                   tier.featured
-                    ? "bg-cyan-300 text-zinc-950 hover:bg-cyan-200"
-                    : "border border-white/10 bg-white/[0.04] text-white hover:border-white/20 hover:bg-white/[0.08]"
+                    ? "bg-[#C9A227] text-[#101C3D] hover:bg-[#D9B545]"
+                    : "border border-[#101C3D]/10 bg-[#101C3D]/[0.04] text-[#101C3D] hover:border-[#101C3D]/20 hover:bg-[#101C3D]/[0.06]"
                 }`}
               >
                 {tier.cta}
@@ -685,24 +685,24 @@ export default function Home() {
 
       <section
         id="founding-offer"
-        className="border-y border-white/10 bg-zinc-950/70 py-20"
+        className="border-y border-[#101C3D]/10 bg-white/70 py-20"
       >
         <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <div>
-            <p className="text-sm font-bold uppercase text-rose-200">
+            <p className="text-sm font-bold uppercase text-rose-700">
               Founding agency offer
             </p>
-            <h2 className="mt-3 text-4xl font-black leading-tight text-white sm:text-5xl">
+            <h2 className="mt-3 text-4xl font-black leading-tight text-[#101C3D] sm:text-5xl">
               Bring your first clients before the market gets noisy
             </h2>
-            <p className="mt-5 text-base leading-8 text-zinc-400">
+            <p className="mt-5 text-base leading-8 text-[#5B6478]">
               Early agencies get hands-on onboarding, template help, and a say
               in the agency reporting roadmap. The offer is designed for teams
               already managing Instagram campaigns for multiple clients.
             </p>
             <Link
               href="/login"
-              className="mt-8 inline-flex items-center justify-center gap-2 bg-rose-200 px-6 py-3 text-sm font-bold text-zinc-950 transition hover:bg-rose-100"
+              className="mt-8 inline-flex items-center justify-center gap-2 bg-rose-200 px-6 py-3 text-sm font-bold text-[#101C3D] transition hover:bg-rose-100"
             >
               Claim founding access
               <ArrowIcon />
@@ -710,14 +710,14 @@ export default function Home() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <article className="border border-rose-200/20 bg-rose-300/10 p-6">
-              <h3 className="text-2xl font-black text-white">
+            <article className="border border-[#C9A227]/30 bg-[#C9A227]/10 p-6">
+              <h3 className="text-2xl font-black text-[#101C3D]">
                 What founders get
               </h3>
               <ul className="mt-6 space-y-3">
                 {foundingOffer.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm text-zinc-300">
-                    <span className="mt-0.5 text-rose-200">
+                  <li key={item} className="flex gap-3 text-sm text-[#3E4A68]">
+                    <span className="mt-0.5 text-rose-700">
                       <CheckIcon />
                     </span>
                     {item}
@@ -726,18 +726,18 @@ export default function Home() {
               </ul>
             </article>
 
-            <article className="border border-white/10 bg-white/[0.035] p-6">
-              <h3 className="text-2xl font-black text-white">
+            <article className="border border-[#101C3D]/10 bg-[#101C3D]/[0.03] p-6">
+              <h3 className="text-2xl font-black text-[#101C3D]">
                 Referral loop
               </h3>
-              <p className="mt-3 text-sm leading-6 text-zinc-400">
+              <p className="mt-3 text-sm leading-6 text-[#5B6478]">
                 Referrals start as a manual founding-agency loop first, then
                 move into Stripe billing credits once abuse controls are proven.
               </p>
               <ol className="mt-6 space-y-3">
                 {referralLoop.map((item, index) => (
-                  <li key={item} className="flex gap-3 text-sm text-zinc-300">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-cyan-200/20 text-xs font-black text-cyan-100">
+                  <li key={item} className="flex gap-3 text-sm text-[#3E4A68]">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-[#C9A227]/30 text-xs font-black text-[#7A5F14]">
                       {index + 1}
                     </span>
                     {item}
@@ -749,20 +749,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-white/[0.025] py-20">
+      <section className="border-y border-[#101C3D]/10 bg-white/[0.025] py-20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
-              <p className="text-sm font-bold uppercase text-emerald-200">FAQ</p>
-              <h2 className="mt-3 text-4xl font-black leading-tight text-white">
+              <p className="text-sm font-bold uppercase text-emerald-700">FAQ</p>
+              <h2 className="mt-3 text-4xl font-black leading-tight text-[#101C3D]">
                 Questions before you launch
               </h2>
             </div>
             <div className="grid gap-3">
               {faqs.map((faq) => (
-                <article key={faq.question} className="border border-white/10 bg-zinc-950 p-5">
-                  <h3 className="text-lg font-bold text-white">{faq.question}</h3>
-                  <p className="mt-2 text-sm leading-6 text-zinc-400">{faq.answer}</p>
+                <article key={faq.question} className="border border-[#101C3D]/10 bg-white p-5">
+                  <h3 className="text-lg font-bold text-[#101C3D]">{faq.question}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#5B6478]">{faq.answer}</p>
                 </article>
               ))}
             </div>
@@ -771,18 +771,18 @@ export default function Home() {
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-6 lg:px-8">
-        <div className="grid gap-8 border border-white/10 bg-[linear-gradient(135deg,rgba(34,211,238,0.14),rgba(16,185,129,0.10),rgba(244,63,94,0.08))] p-6 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div className="grid gap-8 border border-[#101C3D]/10 bg-[linear-gradient(135deg,rgba(34,211,238,0.14),rgba(16,185,129,0.10),rgba(244,63,94,0.08))] p-6 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <p className="text-sm font-bold uppercase text-cyan-100">
+            <p className="text-sm font-bold uppercase text-[#7A5F14]">
               Ready when your next reel goes live
             </p>
-            <h2 className="mt-3 max-w-3xl text-4xl font-black leading-tight text-white sm:text-5xl">
+            <h2 className="mt-3 max-w-3xl text-4xl font-black leading-tight text-[#101C3D] sm:text-5xl">
               Start free and turn keyword comments into private replies
             </h2>
           </div>
           <Link
             href="/login"
-            className="inline-flex items-center justify-center gap-2 bg-cyan-300 px-6 py-3 text-sm font-bold text-zinc-950 transition hover:bg-cyan-200"
+            className="inline-flex items-center justify-center gap-2 bg-[#C9A227] px-6 py-3 text-sm font-bold text-[#101C3D] transition hover:bg-[#D9B545]"
           >
             Start free
             <ArrowIcon />
@@ -790,38 +790,38 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-white/10 py-8">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-5 text-sm text-zinc-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <footer className="border-t border-[#101C3D]/10 py-8">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-5 text-sm text-[#6B7590] sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <div className="flex items-center gap-3">
-            <span className="flex h-8 w-8 items-center justify-center border border-cyan-200/20 bg-cyan-300/10 text-xs font-black text-cyan-100">
-              CC
+            <span className="flex h-8 w-8 items-center justify-center border border-[#C9A227]/30 bg-[#C9A227]/10 text-xs font-black text-[#7A5F14]">
+              LD
             </span>
             <span>LeadDoor</span>
           </div>
           <div className="flex flex-wrap gap-4">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="transition hover:text-white">
+              <a key={link.href} href={link.href} className="transition hover:text-[#101C3D]">
                 {link.label}
               </a>
             ))}
             {seoLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="transition hover:text-white">
+              <Link key={link.href} href={link.href} className="transition hover:text-[#101C3D]">
                 {link.label}
               </Link>
             ))}
-            <Link href="/login" className="transition hover:text-white">
+            <Link href="/login" className="transition hover:text-[#101C3D]">
               Sign in
             </Link>
-            <Link href="/privacy" className="transition hover:text-white">
+            <Link href="/privacy" className="transition hover:text-[#101C3D]">
               Privacy
             </Link>
-            <Link href="/terms" className="transition hover:text-white">
+            <Link href="/terms" className="transition hover:text-[#101C3D]">
               Terms
             </Link>
-            <Link href="/data-deletion" className="transition hover:text-white">
+            <Link href="/data-deletion" className="transition hover:text-[#101C3D]">
               Data deletion
             </Link>
-            <Link href="/meta-review" className="transition hover:text-white">
+            <Link href="/meta-review" className="transition hover:text-[#101C3D]">
               Meta review
             </Link>
           </div>
