@@ -91,6 +91,9 @@ model Workspace {
   webhookEvents     WebhookEvent[]
   billingEvents     BillingEvent[]
   operationalEvents OperationalEvent[]
+  tags              Tag[]
+  broadcasts        Broadcast[]
+  inboundMessages   InboundMessage[]
 
   @@index([ownerId])
 }
@@ -147,6 +150,8 @@ model InstagramAccount {
   automations Automation[]
   dmLogs      DmLog[]
   linkClicks  LinkClick[]
+  broadcasts  Broadcast[]
+  inboundMessages InboundMessage[]
 
   @@index([workspaceId])
 }
@@ -158,14 +163,43 @@ model Automation {
 
   name           String
   goal           String?
-  postId         String
+  postId         String? // null = universal automation (all posts of the account)
   postUrl        String?
   keywords       String[]
+  excludedKeywords String[] @default([]) // exclude wins over include
   dmMessage      String
   isActive       Boolean @default(true)
   wholeWordMatch Boolean @default(true)
   reportShareSlug    String? @unique
   reportShareEnabled Boolean @default(true)
+
+  // Smart delay (seconds) before sending — random in [min, max]
+  minDelaySeconds Int @default(0)
+  maxDelaySeconds Int @default(0)
+
+  // Public reply + private DM combo
+  publicReplyEnabled Boolean @default(false)
+  publicReplyText    String?
+
+  // Follow nudge flow: nudge text first, final dmMessage after user replies
+  followNudgeEnabled Boolean @default(false)
+  followNudgeMessage String?
+
+  // Quick replies on Send-API DMs (never on private replies — text only)
+  quickReplies String[] @default([])
+
+  // Auto-tagging for lead segmentation
+  autoTag String?
+
+  // Spam auto-hide keywords
+  hideKeywords String[] @default([])
+
+  // Story reply trigger
+  storyTriggerEnabled Boolean @default(false)
+
+  // A/B testing of the DM copy
+  abTestEnabled    Boolean @default(false)
+  dmMessageVariantB String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -175,6 +209,7 @@ model Automation {
   dmLogs           DmLog[]
   trackedLinks     TrackedLink[]
   linkClicks       LinkClick[]
+  sequenceSteps    SequenceStep[]
 
   @@index([workspaceId])
   @@index([instagramAccountId])
@@ -196,6 +231,9 @@ model DmLog {
   attempts      Int      @default(0)
   dmSentAt      DateTime?
   errorMessage  String?
+  variant       String? // "A" | "B" for A/B tests
+  tags          String[] @default([])
+  nudgeExpiresAt DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -203,10 +241,105 @@ model DmLog {
   workspace        Workspace        @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
   automation       Automation       @relation(fields: [automationId], references: [id], onDelete: Cascade)
   instagramAccount InstagramAccount @relation(fields: [instagramAccountId], references: [id], onDelete: Cascade)
+  sequenceDeliveries SequenceDelivery[]
 
   @@unique([automationId, commentId])
   @@index([workspaceId])
   @@index([automationId])
+  @@index([instagramAccountId])
+  @@index([status])
+}
+
+model SequenceStep {
+  id           String @id @default(cuid())
+  automationId String
+
+  stepOrder    Int
+  delayMinutes Int     @default(60)
+  message      String
+  quickReplies String[] @default([])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  automation Automation @relation(fields: [automationId], references: [id], onDelete: Cascade)
+
+  @@unique([automationId, stepOrder])
+  @@index([automationId])
+}
+
+model SequenceDelivery {
+  id      String @id @default(cuid())
+  dmLogId String
+
+  stepOrder Int
+  status    DmStatus @default(PENDING)
+  sentAt    DateTime?
+  errorMessage String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  dmLog DmLog @relation(fields: [dmLogId], references: [id], onDelete: Cascade)
+
+  @@unique([dmLogId, stepOrder])
+  @@index([dmLogId])
+}
+
+model InboundMessage {
+  id                 String   @id @default(cuid())
+  workspaceId        String
+  instagramAccountId String
+
+  senderId   String
+  senderName String?
+  messageText String?
+  mid        String?   @unique
+  receivedAt DateTime @default(now())
+
+  createdAt DateTime @default(now())
+
+  workspace        Workspace        @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  instagramAccount InstagramAccount @relation(fields: [instagramAccountId], references: [id], onDelete: Cascade)
+
+  @@index([instagramAccountId, senderId, receivedAt])
+  @@index([workspaceId])
+}
+
+model Tag {
+  id          String @id @default(cuid())
+  workspaceId String
+  name        String
+
+  createdAt DateTime @default(now())
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, name])
+  @@index([workspaceId])
+}
+
+model Broadcast {
+  id                 String   @id @default(cuid())
+  workspaceId        String
+  instagramAccountId String
+
+  name         String?
+  message      String
+  quickReplies String[] @default([])
+  scheduledAt  DateTime?
+  status       BroadcastStatus @default(DRAFT)
+  sentCount    Int             @default(0)
+  totalCount   Int             @default(0)
+  errorMessage String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  workspace        Workspace        @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  instagramAccount InstagramAccount @relation(fields: [instagramAccountId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
   @@index([instagramAccountId])
   @@index([status])
 }
@@ -235,6 +368,7 @@ model LinkClick {
   automationId       String
   instagramAccountId String
   trackedLinkId      String
+  variant            String? // "A" | "B" — A/B test attribution
   ipHash             String?
   userAgent          String?
   referrer           String?
@@ -336,6 +470,18 @@ enum DmStatus {
   SKIPPED_RATE_LIMIT
   SKIPPED_PLAN_LIMIT
   SKIPPED_NO_MATCH
+  NUDGE_PENDING
+  EXPIRED
+  SKIPPED_WINDOW_CLOSED
+}
+
+enum BroadcastStatus {
+  DRAFT
+  SCHEDULED
+  SENDING
+  SENT
+  FAILED
+  CANCELLED
 }
 
 enum WebhookStatus {

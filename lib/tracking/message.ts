@@ -49,18 +49,23 @@ export function renderMessageWithTracking({
   commenterName,
   trackedLinks,
   baseUrl,
+  variant,
 }: {
   message: string;
   commenterName?: string | null;
   trackedLinks?: MessageTrackedLink[];
   baseUrl?: string;
+  variant?: string | null;
 }) {
   let rendered = message.replace(/\{username\}/gi, commenterName ?? "there");
   const primaryLink = trackedLinks?.[0];
 
   if (!primaryLink) return rendered;
 
-  const trackedUrl = buildTrackedUrl(primaryLink.slug, baseUrl);
+  // A/B variant attribution: ?v=A / ?v=B is stored on LinkClick by /r/[slug]
+  const trackedUrl =
+    buildTrackedUrl(primaryLink.slug, baseUrl) +
+    (variant ? `?v=${encodeURIComponent(variant)}` : "");
 
   if (/\{link\}/i.test(rendered)) {
     return rendered.replace(/\{link\}/gi, trackedUrl);
